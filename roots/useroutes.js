@@ -39,7 +39,6 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
     try {
       const { email, password, role } = req.body;
-  
       let user;
       if (role === 'doctor') {
         user = await Doctor.findOne({ email });
@@ -48,7 +47,6 @@ router.post("/login", async (req, res) => {
       } else {
         return res.status(400).send({ message: "Invalid role", success: false });
       }
-  
       if (!user) {
         return res.status(400).send({ message: "User Does Not Exist", success: false });
       }
